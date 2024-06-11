@@ -20,7 +20,8 @@ config :logger, level: :info
 # of environment variables, is done on config/runtime.exs.
 
 config :franco, FrancoWeb.Endpoint,
-  http: [port: {:system, "PORT"}], # Possibly not needed, but doesn't hurt
+  force_ssl: [rewrite_on: [:x_forwaded_proto]],
+  http: [port: {:system, "PORT"}],
   url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443],
   secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
   server: true
